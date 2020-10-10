@@ -1,0 +1,17 @@
+#!/bin/sh
+
+[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
+
+#export CONFIG_PATH=$(git rev-parse --show-toplevel)
+
+export PATH=$PATH:$HOME/scripts
+export EDITOR="vim"
+export TERMINAL="st"
+export LC_ALL="C"
+sh aliases.sh
+
+WM="bspwm"
+tty=$(tty);
+if [ "$tty" = "/dev/tty1" ]; then
+	pgrep $WM || startx
+fi
